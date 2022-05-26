@@ -180,6 +180,16 @@
     margin-left: 0;
     border-radius: 50%;
   }
+  label#filter_rel::before {
+    content: "";
+    border: 1.5px solid white;
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin: 6px 10px;
+    margin-left: 0;
+    border-radius: 50%;
+  }
   label::after {
     content: "";
     display: inline-block;
@@ -193,13 +203,26 @@
     border-radius: 50%;
     transition: all 0.4s;
   }
+  label#filter_rel::after {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    width: 9px;
+    height: 9px;
+    left: 1.8px;
+    top: 32px;
+    margin: -2px 10px;
+    margin-left: 0;
+    border-radius: 50%;
+    transition: all 0.4s;
+  }
   input[type="radio"]:checked + label::after {
     background: #04AA6D;
   }
   .sliderContainerAbsolute {
       position: absolute;
       left: 0%;
-      top: 325px;
+      top: 335px;
       width: 260px;
       height: 120px;
       z-index: 1;
@@ -216,7 +239,7 @@
   .sliderContainerRelative {
     position: absolute;
     left: 0%;
-    top: 325px;
+    top: 335px;
     width: 260px;
     height: 120px;
   }
@@ -344,7 +367,7 @@
         <input id='abs' type='radio' name='toggle_meas' onclick="getSlider_abs()" value='abs' checked='checked'>
         <label for='abs'>Public Transit Time</label>
         <input id='rel' type='radio' name='toggle_meas' onclick="getSlider_rel()" value='rel'>
-        <label for='rel'>
+        <label id= 'filter_rel' for='rel'>
           <div class="fraction">
             <p class="num">Public Transit Time</p>
             <p class="dem">Driving Time</p>
@@ -951,7 +974,7 @@ function ready(data){
             ' minutes: ' + '<br>' +
             "<font size='+1'>"+ '<b>'+ accessibledests_abs_com.toString() + "</font>" + '</b>' + "<font size='-1'>" + ' (' + '<b>' +
             Math.round((accessibledests_abs_com/feature.properties['jobs.all']*1000)/10) + '</b>' +
-            '% of commuters from this Block Group)' + '</font>' +'</center>'
+            '% of residents from this Block Group)' + '</font>' +'</center>'
             )
             .addTo(map_bef);
           }
@@ -984,7 +1007,7 @@ function ready(data){
             ' * drive time: ' + '<br>' +
             "<font size='+1'>"+ '<b>'+ accessibledests_rel_com.toString() + "</font>" + '</b>' + "<font size='-1'>" + ' (' + '<b>' +
             Math.round((accessibledests_rel_com/feature.properties['jobs.all']*1000)/10) + '</b>' +
-            '% of commuters from this Block Group)' + '</font>' +'</center>'
+            '% of residents from this Block Group)' + '</font>' +'</center>'
             )
             .addTo(map_bef);
           }
@@ -1032,7 +1055,7 @@ function ready(data){
             ' minutes: ' + '<br>' +
             "<font size='+1'>"+ '<b>'+  accessibleDest_abs_com_on_aft.toString() + "</font>" + '</b>' + "<font size='-1'>" + ' (' + '<b>' +
             Math.round((accessibleDest_abs_com_on_aft/feature.properties['jobs.all']*1000)/10) + '</b>' +
-            '% of commuters from this Block Group)' + '</font>' +'</center>')
+            '% of residents from this Block Group)' + '</font>' +'</center>')
             .addTo(map_aft)
           }
           else {
@@ -1076,7 +1099,7 @@ function ready(data){
             ' * drive time: ' + '<br>' +
             "<font size='+1'>"+ '<b>'+ accessibleDest_rel_com_on_aft.toString() + "</font>" + '</b>' + "<font size='-1'>" + ' (' + '<b>' +
             Math.round((accessibleDest_rel_com_on_aft/feature.properties['jobs.all']*1000)/10) + '</b>' +
-            '% of commuters from this Block Group)' + '</font>' +'</center>')
+            '% of residents from this Block Group)' + '</font>' +'</center>')
             .addTo(map_aft)
           }
           else {
@@ -1354,12 +1377,12 @@ function ready(data){
         popup_aft
           .setLngLat(et.lngLat)
           .setHTML(
-          '<center>' + 'Commuters who can access their jobs ' + '<br>' +
+          '<center>' + 'Residents who can access their jobs ' + '<br>' +
           'within ' + '<b>'+ "<font size='+1'>" + slider_abs.value + "</font>" + '</b>' +
           ' minutes: ' + '<br>' +
           "<font size='+1'>"+ '<b>'+ accessibledests_abs_com_aft.toString() + "</font>" + '</b>' + "<font size='-1'>" + ' (' + '<b>' +
           Math.round((accessibledests_abs_com_aft/feature_aft.properties['jobs.all']*1000)/10) + '</b>' +
-          '% of commuters from this Block Group)' + '</font>' +'</center>'
+          '% of residents from this Block Group)' + '</font>' +'</center>'
           )
           .addTo(map_aft);
         }
@@ -1387,12 +1410,12 @@ function ready(data){
         popup_aft
           .setLngLat(et.lngLat)
           .setHTML(
-          '<center>' + 'Commuters who can access their jobs ' + '<br>' +
+          '<center>' + 'Residents can access their jobs ' + '<br>' +
           'within ' + '<b>'+ "<font size='+1'>" + slider_rel.value + "</font>" + '</b>' +
           ' * drive time: ' + '<br>' +
           "<font size='+1'>"+ '<b>'+ accessibledests_rel_com_aft.toString() + "</font>" + '</b>' + "<font size='-1'>" + ' (' + '<b>' +
           Math.round((accessibledests_rel_com_aft/feature_aft.properties['jobs.all']*1000)/10) + '</b>' +
-          '% of commuters from this Block Group)' + '</font>' +'</center>'
+          '% of residents from this Block Group)' + '</font>' +'</center>'
           )
           .addTo(map_aft);
         }
@@ -1443,7 +1466,7 @@ function ready(data){
             ' minutes: ' + '<br>' +
             "<font size='+1'>"+ '<b>'+ accessibleDest_abs_com_on_bef.toString() + "</font>" + '</b>' + "<font size='-1'>" + ' (' + '<b>' +
             Math.round((accessibleDest_abs_com_on_bef/feature_aft.properties['jobs.all']*1000)/10) + '</b>' +
-            '% of commuters from this Block Group)' + '</font>' +'</center>')
+            '% of residents from this Block Group)' + '</font>' +'</center>')
             .addTo(map_bef)
           }
           else {
@@ -1488,7 +1511,7 @@ function ready(data){
           ' * drive time: ' + '<br>' +
           "<font size='+1'>"+ '<b>'+  accessibleDest_rel_com_on_bef.toString() + "</font>" + '</b>' + "<font size='-1'>" + ' (' + '<b>' +
           Math.round((accessibleDest_rel_com_on_bef/feature_aft.properties['jobs.all']*1000)/10) + '</b>' +
-          '% of commuters from this Block Group)' + '</font>' +'</center>')
+          '% of residents from this Block Group)' + '</font>' +'</center>')
           .addTo(map_bef)
         }
         else {
@@ -1518,6 +1541,79 @@ function ready(data){
     });
 
   }); //map_aft ends
+
+  // add additional maps (atlanta boundary & main road)
+  map_bef.on('load', () => {
+  map_bef.addSource('atl_boundary',  {type: 'vector', url: "mapbox://uhwang3.atl_boundary" });
+
+  map_bef.addSource('main_road_3counties',  {type: 'vector', url: "mapbox://uhwang3.cl0q27y7p3mcw20qgismthmry-4a3tz" });
+
+  map_bef.addLayer(
+    {
+      'id': 'main_road_3counties',
+      'type': 'line',
+      'source': 'main_road_3counties',
+      'source-layer': 'main_road_3counties',
+      'paint': {
+        'line-color': 'rgba(20,20,20,0.7)',
+        'line-width': 1.5
+        }
+      },
+    );
+
+    map_bef.addLayer(
+      {
+        'id': 'atl_boundary',
+        'type': 'fill',
+        'source': 'atl_boundary',
+        'source-layer': 'atl_boundary',
+        'paint': {
+          'fill-color':'rgba(0,0,0,0)',
+          'fill-outline-color': 'rgba(200,200,200,0.5)'
+        }
+      },
+    );
+  })
+
+  map_aft.on('load', () => {
+  map_aft.addSource('atl_boundary',  {type: 'vector', url: "mapbox://uhwang3.atl_boundary" });
+
+  map_aft.addSource('main_road_3counties',  {type: 'vector', url: "mapbox://uhwang3.cl0q27y7p3mcw20qgismthmry-4a3tz" });
+
+  map_aft.addLayer(
+    {
+      'id': 'main_road_3counties',
+      'type': 'line',
+      'source': 'main_road_3counties',
+      'source-layer': 'main_road_3counties',
+      'paint': {
+        'line-color': 'rgba(20,20,20,0.7)',
+        'line-width': 1.5
+        }
+      },
+    );
+
+    map_aft.addLayer(
+      {
+        'id': 'atl_boundary',
+        'type': 'fill',
+        'source': 'atl_boundary',
+        'source-layer': 'atl_boundary',
+        'paint': {
+          'fill-color':'rgba(0,0,0,0)',
+          'fill-outline-color': 'rgba(200,200,200,0.5)'
+        }
+      },
+    );
+  })
+
+  map_aft.addControl(
+    new MapboxGeocoder({
+      accessToken: mapboxgl.accessToken,
+      mapboxgl: mapboxgl,
+    }),
+    'bottom-right'
+  );
 }
 
 // move + zoom... both maps simultaneously
