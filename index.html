@@ -310,7 +310,7 @@
 
 
 </style>
-  
+
 <body>
   <div id="map_bef"></div>
   <div id="map_aft"></div>
@@ -335,7 +335,7 @@
   <div class="legend-box"></div>
   <div class="legend-wrapper">
     <div class="legendTitle" id="legendTitle">
-      <p>Proportion of residents who can commute to work within 45 minutes by using transit system during morning peak hour
+      <p>Proportion of residents who can commute to work by transit within <b>45 minutes</b> during morning peak hour
       </p>
     </div>
     <div class="legendBoxes">
@@ -378,7 +378,7 @@
     </div>
     <div class='session_trip'>
       <div class="session_title">
-        <p style="font-size: 21px; font-weight: 600;">Trip purpose</p>      
+        <p style="font-size: 21px; font-weight: 600;">Trip purpose</p>
       </div>
       <div class='row' id='filters_trip'>
         <input id='com' type='radio' name='toggle_trip' value='com' checked='checked'>
@@ -409,7 +409,7 @@
   </div>
 
 <script>
-// default (Absolute measure) - only the slider_abs shown 
+// default (Absolute measure) - only the slider_abs shown
 document.getElementsByClassName("sliderContentRelative")[0].style.visibility = "hidden";
 
 // show the absolute slider while hiding the relative one - by clicking the radio button
@@ -516,10 +516,10 @@ Promise.all([d3.dsv(",", "data/od_detail_0420.csv", function (d) {
   ready(data[0])
 })
 
-// set the variable that legend descriptions can be changed upon the trip purpose filter 
+// set the variable that legend descriptions can be changed upon the trip purpose filter
 let element = document.getElementById("legendTitle");
 let newcontent =`
-    <p>Proportion of residents who can commute to work within 45 minutes by using transit system during morning peak hour
+    <p>Proportion of residents who can commute to work by transit within <b>45 minutes</b> during morning peak hour
     </p>`
     ;
 
@@ -548,8 +548,8 @@ function ready(data){
   }
 
   // initial filtered variable (default) -> used for setting up the PROPERTY value
-  let meas_filter = 'abs' 
-  let trip_filter = 'com' 
+  let meas_filter = 'abs'
+  let trip_filter = 'com'
 
   // show filtered data only within the slider value
   // absolute value_before (conventional transit system)
@@ -569,7 +569,7 @@ function ready(data){
     return d.odmts_ratio_mor > (1/slider_rel.value)
   });
 
-  // CREATE map_bef with more detials 
+  // CREATE map_bef with more detials
   map_bef.on('load', () => {
       map_bef.addSource('before_access_0418',  {type: 'vector', url: "mapbox://uhwang3.before_access_0418" });
 
@@ -606,7 +606,7 @@ function ready(data){
           'filter': ['in', 'o_id', ]
         },
       );
-      
+
       // Layer: showing origin block group
       map_bef.addLayer(
         {
@@ -640,26 +640,26 @@ function ready(data){
 
           // change the legend description
           if (trip_filter === 'com') {
-            newcontent = 
-              `<p>Proportion of residents who can commute to work within `
-              + slider_filter_abs + ` minutes by using transit system during morning peak hour
+            newcontent =
+              `<p>Proportion of residents who can commute to work by transit within <b>`
+              + slider_filter_abs + ` minutes</b> during morning peak hour
               </p>`
             ;
           } else {
             newcontent =
-              `<p>Proportion of residents who can travel to non-work-related destinations within `
-              + slider_filter_abs + ` minutes by using transit system during morning peak hour
+              `<p>Proportion of residents who can travel to non-work-related destinations by transit within <b>`
+              + slider_filter_abs + ` minutes</b> during morning peak hour
               </p>`
             ;
           }
-          
-          element.innerHTML = newcontent;  
 
-        } 
+          element.innerHTML = newcontent;
+
+        }
         // if the type is relative,,, the property refers to the relaitve value
         // needs to add the ".0" as the raw value is stored in the natural number without .0
         else {
-          var field_bef = meas_filter + '.' + trip_filter + '.mor.' + slider_filter_rel; 
+          var field_bef = meas_filter + '.' + trip_filter + '.mor.' + slider_filter_rel;
 
           data_filtered_transit_ratio = data.filter(function(d) {
             return d.transit_ratio_mor > (1/slider_filter_rel)
@@ -667,19 +667,19 @@ function ready(data){
 
                     // change the legend description
           if (trip_filter === 'com') {
-            newcontent = 
-              `<p>Proportion of residents who can commute to work within the `
-              + slider_filter_rel + ` times of driving time by using transit system during morning peak hour
+            newcontent =
+              `<p>Proportion of residents who can commute to work by transit within <b>`
+              + slider_filter_rel + ` times of driving time</b> during morning peak hour
               </p>`
             ;
           } else {
             newcontent =
-            `<p>Proportion of residents who can travel to non-work-related destinations within the `
-              + slider_filter_rel + ` times of driving time by using transit system during morning peak hour
+            `<p>Proportion of residents who can travel to non-work-related destinations by transit within <b>`
+              + slider_filter_rel + ` times of driving time</b> during morning peak hour
               </p>`
             ;
           }
-          element.innerHTML = newcontent; 
+          element.innerHTML = newcontent;
         }
 
         // change the map's property
@@ -707,22 +707,22 @@ function ready(data){
 
           // change the legend description
           if (trip_filter === 'com') {
-            newcontent = 
-              `<p>Proportion of residents who can commute to work within `
-              + slider_filter_abs + ` minutes by using transit system during morning peak hour
+            newcontent =
+              `<p>Proportion of residents who can commute to work by transit within <b>`
+              + slider_filter_abs + ` minutes</b> during morning peak hour
               </p>`
             ;
           } else {
             newcontent =
-            `<p>Proportion of residents who can travel to non-work-related destinations within `
-              + slider_filter_abs + ` minutes by using transit system during morning peak hour
+            `<p>Proportion of residents who can travel to non-work-related destinations by transit within <b>`
+              + slider_filter_abs + ` minutes</b> during morning peak hour
               </p>`
             ;
           }
-          
-          element.innerHTML = newcontent;  
 
-        } 
+          element.innerHTML = newcontent;
+
+        }
         // if the type is relative,,, the property refers to the relaitve value
         // needs to add the ".0" as the raw value is stored in the natural number without .0
         else {
@@ -734,22 +734,22 @@ function ready(data){
 
           // change the legend description
           if (trip_filter === 'com') {
-            newcontent = 
-              `<p>Proportion of residents who can commute to work within the `
+            newcontent =
+              `<p>Proportion of residents who can commute to work by transit within <b>`
               + slider_filter_rel +
-              ` times of driving time by using transit system during morning peak hour
+              ` times of driving time</b> during morning peak hour
               </p>`
             ;
           } else {
             newcontent =
-            `<p>Proportion of residents who can travel to non-work-related destinations within the `
-              + slider_filter_rel + 
-              ` times of driving time by using transit system during morning peak hour
+            `<p>Proportion of residents who can travel to non-work-related destinations by transit within <b>`
+              + slider_filter_rel +
+              ` times of driving time</b> during morning peak hour
               </p>`
             ;
           }
-          
-          element.innerHTML = newcontent; 
+
+          element.innerHTML = newcontent;
 
         }
 
@@ -769,7 +769,7 @@ function ready(data){
         sliderValue_abs.innerHTML = sa.target.value;
 
         slider_filter_abs = sa.target.value;
-        
+
         // if the type is absolute,,, the property refers to the absolute value
         if (meas_filter === 'abs') {
           var field_bef = meas_filter + '.' + trip_filter + '.mor.' + slider_filter_abs + 'min';
@@ -780,26 +780,26 @@ function ready(data){
 
           // change the legend description
           if (trip_filter === 'com') {
-            newcontent = 
-              `<p>Proportion of residents who can commute to work within `
-              + slider_filter_abs + ` minutes by using transit system during morning peak hour
+            newcontent =
+              `<p>Proportion of residents who can commute to work by transit within <b>`
+              + slider_filter_abs + ` minutes</b> during morning peak hour
               </p>`
             ;
           } else {
             newcontent =
-            `<p>Proportion of residents who can travel to non-work-related destinations within `
-              + slider_filter_abs + ` minutes by using transit system during morning peak hour
+            `<p>Proportion of residents who can travel to non-work-related destinations by transit within <b>`
+              + slider_filter_abs + ` minutes</b> during morning peak hour
               </p>`
             ;
           }
-          
-          element.innerHTML = newcontent;  
 
-        } 
+          element.innerHTML = newcontent;
+
+        }
         // if the type is relative,,, the property refers to the relaitve value
         // needs to add the ".0" as the raw value is stored in the natural number without .0
         else {
-          var field_bef = meas_filter + '.' + trip_filter + '.mor.' + slider_filter_rel; 
+          var field_bef = meas_filter + '.' + trip_filter + '.mor.' + slider_filter_rel;
 
           data_filtered_transit_ratio = data.filter(function(d) {
             return d.transit_ratio_mor > (1/slider_filter_rel)
@@ -807,22 +807,22 @@ function ready(data){
 
           // change the legend description
           if (trip_filter === 'com') {
-            newcontent = 
-              `<p>Proportion of residents who can commute to work within the `
+            newcontent =
+              `<p>Proportion of residents who can commute to work by transit within <b>`
               + slider_filter_rel +
-              ` times of driving time by using transit system during morning peak hour
+              ` times of driving time</b> during morning peak hour
               </p>`
             ;
           } else {
             newcontent =
-              `<p>Proportion of residents who can travel to non-work-related destinations within the `
-              + slider_filter_rel + 
-              ` times of driving time by using transit system during morning peak hour
+              `<p>Proportion of residents who can travel to non-work-related destinations by transit within <b>`
+              + slider_filter_rel +
+              ` times of driving time</b> during morning peak hour
               </p>`
             ;
           }
-          
-          element.innerHTML = newcontent; 
+
+          element.innerHTML = newcontent;
 
         }
         // change the map's property
@@ -841,7 +841,7 @@ function ready(data){
         sliderValue_rel.innerHTML = sr.target.value;
 
         slider_filter_rel = sr.target.value;
-        
+
         // if the type is absolute,,, the property refers to the absolute value
         if (meas_filter === 'abs') {
           var field_bef = meas_filter + '.' + trip_filter + '.mor.' + slider_filter_abs + 'min';
@@ -852,26 +852,26 @@ function ready(data){
 
           // change the legend description
           if (trip_filter === 'com') {
-            newcontent = 
-              `<p>Proportion of residents who can commute to work within `
-              + slider_filter_abs + ` minutes by using transit system during morning peak hour
+            newcontent =
+              `<p>Proportion of residents who can commute to work by transit within <b>`
+              + slider_filter_abs + ` minutes</b> during morning peak hour
               </p>`
             ;
           } else {
             newcontent =
-              `<p>Proportion of residents who can travel to non-work-related destinations within `
-              + slider_filter_abs + ` minutes by using transit system during morning peak hour
+              `<p>Proportion of residents who can travel to non-work-related destinations by transit within <b>`
+              + slider_filter_abs + ` minutes</b> during morning peak hour
               </p>`
             ;
           }
-          
-          element.innerHTML = newcontent;  
 
-        } 
+          element.innerHTML = newcontent;
+
+        }
         // if the type is relative,,, the property refers to the relaitve value
         // needs to add the ".0" as the raw value is stored in the natural number without .0
         else {
-          var field_bef = meas_filter + '.' + trip_filter + '.mor.' + slider_filter_rel; 
+          var field_bef = meas_filter + '.' + trip_filter + '.mor.' + slider_filter_rel;
 
           data_filtered_transit_ratio = data.filter(function(d) {
             return d.transit_ratio_mor > (1/slider_filter_rel)
@@ -879,22 +879,22 @@ function ready(data){
 
           // change the legend description
           if (trip_filter === 'com') {
-            newcontent = 
-              `<p>Proportion of residents who can commute to work within the `
+            newcontent =
+              `<p>Proportion of residents who can commute to work by transit within <b>`
               + slider_filter_rel +
-              ` times of driving time by using transit system during morning peak hour
+              ` times of driving time</b> during morning peak hour
               </p>`
             ;
           } else {
             newcontent =
-              `<p>Proportion of residents who can travel to non-work-related destinations within the `
-              + slider_filter_rel + 
-              ` times of driving time by using transit system during morning peak hour
+              `<p>Proportion of residents who can travel to non-work-related destinations by transit within <b>`
+              + slider_filter_rel +
+              ` times of driving time</b> during morning peak hour
               </p>`
             ;
           }
-          
-          element.innerHTML = newcontent; 
+
+          element.innerHTML = newcontent;
 
         }
 
@@ -991,7 +991,7 @@ function ready(data){
             .addTo(map_bef);
           }
         }
-        
+
         else {
           map_bef.setFilter('bg-dest', myFilter_rel);
           map_bef.setFilter('bg-origin', ['in', 'o_id', feature.properties['o_id']]);
@@ -1023,7 +1023,7 @@ function ready(data){
             )
             .addTo(map_bef);
           }
-        };       
+        };
 
         // Add the selected features to the highlighted layer.
         if (meas_filter === 'abs') {
@@ -1129,7 +1129,7 @@ function ready(data){
   }); //map_bef ends
 
 
-  // CREATE map_aft with more detials 
+  // CREATE map_aft with more detials
   map_aft.on('load', () => {
     map_aft.addSource('after_access_0420',  {type: 'vector', url: "mapbox://uhwang3.after_access_0420" });
 
@@ -1166,7 +1166,7 @@ function ready(data){
         'filter': ['in', 'o_id', ]
       },
     );
-    
+
     // Layer: showing origin block group
     map_aft.addLayer(
       {
@@ -1197,11 +1197,11 @@ function ready(data){
         data_filtered_odmts_time = data.filter(function(d) {
         return d.odmts_time_mor < slider_filter_abs
         });
-      } 
+      }
       // if the type is relative,,, the property refers to the relaitve value
       // needs to add the ".0" as the raw value is stored in the natural number without .0
       else {
-        var field_aft = meas_filter + '.' + trip_filter + '.mor.' + slider_filter_rel; 
+        var field_aft = meas_filter + '.' + trip_filter + '.mor.' + slider_filter_rel;
 
         data_filtered_odmts_ratio = data.filter(function(d) {
           return d.odmts_ratio_mor > (1/slider_filter_rel)
@@ -1230,7 +1230,7 @@ function ready(data){
         data_filtered_odmts_time = data.filter(function(d) {
         return d.odmts_time_mor < slider_filter_abs
         });
-      } 
+      }
       // if the type is relative,,, the property refers to the relaitve value
       // needs to add the ".0" as the raw value is stored in the natural number without .0
       else {
@@ -1256,7 +1256,7 @@ function ready(data){
       sliderValue_abs.innerHTML = sa.target.value;
 
       slider_filter_abs = sa.target.value;
-      
+
       // if the type is absolute,,, the property refers to the absolute value
       if (meas_filter === 'abs') {
         var field_aft = meas_filter + '.' + trip_filter + '.mor.' + slider_filter_abs + 'min';
@@ -1264,11 +1264,11 @@ function ready(data){
         data_filtered_odmts_time = data.filter(function(d) {
           return d.odmts_time_mor < slider_filter_abs
         });
-      } 
+      }
       // if the type is relative,,, the property refers to the relaitve value
       // needs to add the ".0" as the raw value is stored in the natural number without .0
       else {
-        var field_aft = meas_filter + '.' + trip_filter + '.mor.' + slider_filter_rel; 
+        var field_aft = meas_filter + '.' + trip_filter + '.mor.' + slider_filter_rel;
 
         data_filtered_odmts_ratio = data.filter(function(d) {
           return d.odmts_ratio_mor > (1/slider_filter_rel)
@@ -1291,7 +1291,7 @@ function ready(data){
       sliderValue_rel.innerHTML = sr.target.value;
 
       slider_filter_rel = sr.target.value;
-      
+
       // if the type is absolute,,, the property refers to the absolute value
       if (meas_filter === 'abs') {
         var field_aft = meas_filter + '.' + trip_filter + '.mor.' + slider_filter_abs + 'min';
@@ -1299,11 +1299,11 @@ function ready(data){
         data_filtered_odmts_time = data.filter(function(d) {
          return d.odmts_time_mor < slider_filter_abs
         });
-      } 
+      }
       // if the type is relative,,, the property refers to the relaitve value
       // needs to add the ".0" as the raw value is stored in the natural number without .0
       else {
-        var field_aft = meas_filter + '.' + trip_filter + '.mor.' + slider_filter_rel; 
+        var field_aft = meas_filter + '.' + trip_filter + '.mor.' + slider_filter_rel;
 
         data_filtered_odmts_ratio = data.filter(function(d) {
           return d.odmts_ratio_mor > (1/slider_filter_rel)
@@ -1399,7 +1399,7 @@ function ready(data){
           .addTo(map_aft);
         }
       }
-      
+
       else {
         map_aft.setFilter('bg-dest', myFilter_rel_aft);
         map_aft.setFilter('bg-origin', ['in', 'o_id', feature_aft.properties['o_id']]);
@@ -1432,10 +1432,10 @@ function ready(data){
           .addTo(map_aft);
         }
       }
-    
-      
-      
-      
+
+
+
+
         // Add the selected features to the highlighted layer.
       if (meas_filter === 'abs') {
 
