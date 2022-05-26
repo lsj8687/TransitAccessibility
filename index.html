@@ -335,7 +335,7 @@
   <div class="legend-box"></div>
   <div class="legend-wrapper">
     <div class="legendTitle" id="legendTitle">
-      <p>Proportion of residents who can commute to work within the 45 minutes by using transit system during morning peak hour
+      <p>Proportion of residents who can commute to work within 45 minutes by using transit system during morning peak hour
       </p>
     </div>
     <div class="legendBoxes">
@@ -519,7 +519,7 @@ Promise.all([d3.dsv(",", "data/od_detail_0420.csv", function (d) {
 // set the variable that legend descriptions can be changed upon the trip purpose filter 
 let element = document.getElementById("legendTitle");
 let newcontent =`
-    <p>Proportion of residents who can commute to work within the 45 minutes by using transit system during morning peak hour
+    <p>Proportion of residents who can commute to work within 45 minutes by using transit system during morning peak hour
     </p>`
     ;
 
@@ -641,13 +641,13 @@ function ready(data){
           // change the legend description
           if (trip_filter === 'com') {
             newcontent = 
-              `<p>Proportion of residents who can commute to work within the `
+              `<p>Proportion of residents who can commute to work within `
               + slider_filter_abs + ` minutes by using transit system during morning peak hour
               </p>`
             ;
           } else {
             newcontent =
-              `<p>Proportion of residents who can travel to non-work-related destinations within the `
+              `<p>Proportion of residents who can travel to non-work-related destinations within `
               + slider_filter_abs + ` minutes by using transit system during morning peak hour
               </p>`
             ;
@@ -669,13 +669,13 @@ function ready(data){
           if (trip_filter === 'com') {
             newcontent = 
               `<p>Proportion of residents who can commute to work within the `
-              + slider_filter_rel + ` times as long as driving time by using transit system during morning peak hour
+              + slider_filter_rel + ` times of driving time by using transit system during morning peak hour
               </p>`
             ;
           } else {
             newcontent =
             `<p>Proportion of residents who can travel to non-work-related destinations within the `
-              + slider_filter_rel + ` times as long as driving time by using transit system during morning peak hour
+              + slider_filter_rel + ` times of driving time by using transit system during morning peak hour
               </p>`
             ;
           }
@@ -708,13 +708,13 @@ function ready(data){
           // change the legend description
           if (trip_filter === 'com') {
             newcontent = 
-              `<p>Proportion of residents who can commute to work within the `
+              `<p>Proportion of residents who can commute to work within `
               + slider_filter_abs + ` minutes by using transit system during morning peak hour
               </p>`
             ;
           } else {
             newcontent =
-            `<p>Proportion of residents who can travel to non-work-related destinations within the `
+            `<p>Proportion of residents who can travel to non-work-related destinations within `
               + slider_filter_abs + ` minutes by using transit system during morning peak hour
               </p>`
             ;
@@ -737,14 +737,14 @@ function ready(data){
             newcontent = 
               `<p>Proportion of residents who can commute to work within the `
               + slider_filter_rel +
-              ` times as long as driving time by using transit system during morning peak hour
+              ` times of driving time by using transit system during morning peak hour
               </p>`
             ;
           } else {
             newcontent =
             `<p>Proportion of residents who can travel to non-work-related destinations within the `
               + slider_filter_rel + 
-              ` times as long as driving time by using transit system during morning peak hour
+              ` times of driving time by using transit system during morning peak hour
               </p>`
             ;
           }
@@ -781,13 +781,13 @@ function ready(data){
           // change the legend description
           if (trip_filter === 'com') {
             newcontent = 
-              `<p>Proportion of residents who can commute to work within the `
+              `<p>Proportion of residents who can commute to work within `
               + slider_filter_abs + ` minutes by using transit system during morning peak hour
               </p>`
             ;
           } else {
             newcontent =
-            `<p>Proportion of residents who can travel to non-work-related destinations within the `
+            `<p>Proportion of residents who can travel to non-work-related destinations within `
               + slider_filter_abs + ` minutes by using transit system during morning peak hour
               </p>`
             ;
@@ -810,14 +810,14 @@ function ready(data){
             newcontent = 
               `<p>Proportion of residents who can commute to work within the `
               + slider_filter_rel +
-              ` times as long as driving time by using transit system during morning peak hour
+              ` times of driving time by using transit system during morning peak hour
               </p>`
             ;
           } else {
             newcontent =
               `<p>Proportion of residents who can travel to non-work-related destinations within the `
               + slider_filter_rel + 
-              ` times as long as driving time by using transit system during morning peak hour
+              ` times of driving time by using transit system during morning peak hour
               </p>`
             ;
           }
@@ -853,13 +853,13 @@ function ready(data){
           // change the legend description
           if (trip_filter === 'com') {
             newcontent = 
-              `<p>Proportion of residents who can commute to work within the `
+              `<p>Proportion of residents who can commute to work within `
               + slider_filter_abs + ` minutes by using transit system during morning peak hour
               </p>`
             ;
           } else {
             newcontent =
-              `<p>Proportion of residents who can travel to non-work-related destinations within the `
+              `<p>Proportion of residents who can travel to non-work-related destinations within `
               + slider_filter_abs + ` minutes by using transit system during morning peak hour
               </p>`
             ;
@@ -882,14 +882,14 @@ function ready(data){
             newcontent = 
               `<p>Proportion of residents who can commute to work within the `
               + slider_filter_rel +
-              ` times as long as driving time by using transit system during morning peak hour
+              ` times of driving time by using transit system during morning peak hour
               </p>`
             ;
           } else {
             newcontent =
               `<p>Proportion of residents who can travel to non-work-related destinations within the `
               + slider_filter_rel + 
-              ` times as long as driving time by using transit system during morning peak hour
+              ` times of driving time by using transit system during morning peak hour
               </p>`
             ;
           }
